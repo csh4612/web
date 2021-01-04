@@ -1,4 +1,4 @@
-package conn;
+package test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -25,7 +25,7 @@ public class ConnTest {
 			Statement stmt = con.createStatement(); // Statement 가 코드짜는 공간, con에게 가져온다.
 			
 			String sql = "insert into song_intfo(si_num, si_name, si_genre, si_singer, si_creadat)";
-			sql += "values(1, '애국가', 'KPOP', '우리모두', '19401201')";  // 자동저장 된다.
+			sql += "values(2, '애국가', 'KPOP', '우리모두', '19401201')";  // 자동저장 된다.
 			int result = stmt.executeUpdate(sql);
 			System.out.println(result + "개 insert되었음");
 			con.commit();
