@@ -2,11 +2,10 @@ package test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class SelectUserInfo {
+public class DeleteSongInfo {
 	public static void main(String[] args) {
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
@@ -17,21 +16,14 @@ public class SelectUserInfo {
 		try {
 			Connection con = DriverManager.getConnection(
 					"jdbc:oracle:thin:@localhost:1521/xe", "jtest", "ezen1234");
-			String sql = "select * from user_info";
+			String sql = "delete from song_info";
 			Statement stmt = con.createStatement();
-		    ResultSet rs = stmt.executeQuery(sql); //메소드에 호출
-			while(rs.next()) {
-				System.out.print(rs.getString("ui_num") + ",");
-				System.out.print(rs.getString("ui_name") + ",");
-				System.out.print(rs.getString("ui_id") + ",");
-				System.out.println(rs.getString("ui_pwd"));
-			}
+			int cnt = stmt.executeUpdate(sql);
+			System.out.println(cnt + "개 삭제되었습니다.");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		
-				
 	}
 }

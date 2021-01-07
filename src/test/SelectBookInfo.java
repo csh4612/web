@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class SelectUserInfo {
+public class SelectBookInfo {
 	public static void main(String[] args) {
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
@@ -16,22 +16,23 @@ public class SelectUserInfo {
 		
 		try {
 			Connection con = DriverManager.getConnection(
-					"jdbc:oracle:thin:@localhost:1521/xe", "jtest", "ezen1234");
-			String sql = "select * from user_info";
+					"jdbc:oracle:thin:@localhost:1521/xe","jtest","ezen1234");
 			Statement stmt = con.createStatement();
-		    ResultSet rs = stmt.executeQuery(sql); //메소드에 호출
+			String sql = "select * from book_info";
+			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()) {
-				System.out.print(rs.getString("ui_num") + ",");
-				System.out.print(rs.getString("ui_name") + ",");
-				System.out.print(rs.getString("ui_id") + ",");
-				System.out.println(rs.getString("ui_pwd"));
+				String str = rs.getString("bi_num") +",";
+				str += rs.getString("bi_name") + ",";
+				str += rs.getString("bi_writer") + ",";
+				str += rs.getString("bi_vendor") + ",";
+				str += rs.getString("bi_credat");
+				System.out.println(str);
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
 				
 	}
+
 }
